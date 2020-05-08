@@ -1,4 +1,4 @@
-examples/* linguist-documentation=false
+test/* linguist-documentation=false
 
 # We want fancy syntax highlighting on GitHub, though GitHub doesn't know how
 # to speak Gleam. Until it does (maybe one day!) we'll tell GitHub that these
