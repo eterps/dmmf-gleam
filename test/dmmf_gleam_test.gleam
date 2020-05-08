@@ -1,4 +1,7 @@
 import dmmf_gleam
+import gleam/string
+import gleam/int
+import gleam/float
 import gleam/should
 
 // === 4. Type Signatures ===
@@ -72,6 +75,7 @@ pub fn ex_5_test() {
   let a_person = Person(first: "Alex", last: "Adams")
   a_person.first |> should.equal("Alex")
   a_person.last |> should.equal("Adams")
+
   let Person(first: first, last: last) = a_person
   first |> should.equal("Alex")
   last |> should.equal("Adams")
@@ -82,8 +86,16 @@ type OrderQuantity {
   KilogramQuantity(Float)
 }
 
+fn get_quantity(an_order_qty) {
+  case an_order_qty {
+    UnitQuantity(u_qty) -> int.to_string(u_qty) |> string.append(" units")
+    KilogramQuantity(kg_qty) -> float.to_string(kg_qty) |> string.append(" kg")
+  }
+}
+
 pub fn ex_6_test() {
   let an_order_qty_in_units = UnitQuantity(10)
   let an_order_qty_in_kg = KilogramQuantity(2.5)
-  1 |> should.equal(1)
+  get_quantity(an_order_qty_in_units) |> should.equal("10 units")
+  get_quantity(an_order_qty_in_kg) |> should.equal("2.5 kg")
 }
