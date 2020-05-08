@@ -99,3 +99,33 @@ pub fn ex_6_test() {
   get_quantity(an_order_qty_in_units) |> should.equal("10 units")
   get_quantity(an_order_qty_in_kg) |> should.equal("2.5 kg")
 }
+
+// === 4. Building a Domain Model by Composing Types ===
+
+type CheckNumber { CheckNumber(Int) }
+type CardNumber { CardNumber(String) }
+type CardType {
+  Visa
+  Mastercard
+}
+type CreditCardInfo {
+  CreditCardInfo(card_type: CardType, card_number: CardNumber)
+}
+type PaymentMethod {
+  Cash
+  Check(CheckNumber)
+  Card(CreditCardInfo)
+}
+type PaymentAmount { PaymentAmount(Float) }
+type Currency {
+  EUR
+  USD
+}
+type Payment {
+  Payment(
+    amount: PaymentAmount,
+    currency: Currency,
+    method: PaymentAmount)
+}
+// type PayInvoice // UNSUPPORTED: Gleam has no function types yet
+// type ConvertPaymentCurrency // UNSUPPORTED: Gleam has no function types yet
