@@ -3,6 +3,7 @@ import gleam/string
 import gleam/int
 import gleam/float
 import gleam/result.{Option}
+import fmt
 import gleam/should
 
 // === 4. Type Signatures ===
@@ -164,3 +165,63 @@ type Customer = Int // Dummy type
 
 type SaveCustomer = fn(Customer) -> Nil
 type NextRandom = fn() -> Int
+
+// === 4. Modeling Lists and Collections ===
+
+type OrderId = Int    // Dummy type
+type OrderLine = Nil  // Dummy type
+
+type Order {
+  Order(
+    order_id: OrderId,
+    lines: List(OrderLine)) // a collection
+}
+
+pub fn ex_7_test() {
+  let a_list = [1, 2, 3]
+  let a_new_list = [0, ..a_list]
+  a_new_list |> should.equal([0, 1, 2, 3])
+}
+
+fn get_print_list1(a_list) {
+  case a_list {
+    [] -> "list is empty"
+    [x] -> "list has one element: " |> fmt.append(x)
+    [x, y] -> "list has two elements: "
+      |> fmt.append(x)
+      |> fmt.append(" and ")
+      |> fmt.append(y)
+    longer_list -> "list has more than two elements"
+  }
+}
+
+pub fn ex_8_test() {
+  get_print_list1([])
+  |> should.equal("list is empty")
+
+  get_print_list1([42])
+  |> should.equal("list has one element: 42")
+
+  get_print_list1([3, 6])
+  |> should.equal("list has two elements: 3 and 6")
+
+  get_print_list1([1, 2, 3])
+  |> should.equal("list has more than two elements")
+}
+
+fn get_print_list2(a_list) {
+  case a_list {
+    [] -> "list is empty"
+    [first, ..rest] ->
+      "list is non-empty with the first element being: "
+      |> fmt.append(first)
+  }
+}
+
+pub fn ex_9_test() {
+  get_print_list2([])
+  |> should.equal("list is empty")
+
+  get_print_list2([3, 6])
+  |> should.equal("list is non-empty with the first element being: 3")
+}
