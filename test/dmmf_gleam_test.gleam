@@ -142,3 +142,18 @@ type PersonalName {
     middle_initial: Option(String),
     last_name: String)
 }
+
+// === 4. Modeling errors ===
+
+type Result(success, failure) {
+  Ok(success)
+  Error(failure)
+}
+
+type PaymentError {
+  CardTypeNotRecognized
+  PaymentRejected
+  PaymentProviderOffline
+}
+
+type PayInvoice2 = fn(UnpaidInvoice, Payment) -> Result(PaidInvoice, PaymentError)
