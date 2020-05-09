@@ -2,6 +2,7 @@ import dmmf_gleam
 import gleam/string
 import gleam/int
 import gleam/float
+import gleam/result.{Option}
 import gleam/should
 
 // === 4. Type Signatures ===
@@ -132,3 +133,12 @@ type PaidInvoice { PaidInvoice }     // Dummy type
 
 type PayInvoice = fn(UnpaidInvoice, Payment) -> PaidInvoice
 type ConvertPaymentCurrency = fn(Payment, Currency) -> Payment
+
+// === 4. Modeling Optional Values ===
+
+type PersonalName {
+  PersonalName(
+    first_name: String,
+    middle_initial: Option(String),
+    last_name: String)
+}
