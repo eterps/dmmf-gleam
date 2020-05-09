@@ -157,3 +157,10 @@ type PaymentError {
 }
 
 type PayInvoice2 = fn(UnpaidInvoice, Payment) -> Result(PaidInvoice, PaymentError)
+
+// === 4. Modeling No Value at All ===
+
+type Customer = Int // Dummy type
+
+type SaveCustomer = fn(Customer) -> Nil
+type NextRandom = fn() -> Int
