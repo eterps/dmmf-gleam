@@ -127,5 +127,8 @@ type Payment {
     currency: Currency,
     method: PaymentAmount)
 }
-// type PayInvoice // UNSUPPORTED: Gleam has no function types yet
-// type ConvertPaymentCurrency // UNSUPPORTED: Gleam has no function types yet
+type UnpaidInvoice { UnpaidInvoice } // Dummy type
+type PaidInvoice { PaidInvoice }     // Dummy type
+
+type PayInvoice = fn(UnpaidInvoice, Payment) -> PaidInvoice
+type ConvertPaymentCurrency = fn(Payment, Currency) -> Payment
