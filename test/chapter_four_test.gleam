@@ -6,7 +6,7 @@ import gleam/result.{Option}
 import fmt
 import gleam/should
 
-// === 4. Type Signatures ===
+// === Type Signatures ===
 
 // signature is: int -> int
 fn add1(x) {
@@ -38,7 +38,7 @@ pub fn ex_3_test() {
   |> should.equal(10)
 }
 
-// === 4. Functions with Generic Types ===
+// === Functions with Generic Types ===
 
 // (a, a) -> bool
 fn are_equal(x, y) {
@@ -52,7 +52,7 @@ pub fn ex_4_test() {
   |> should.equal(True)
 }
 
-// === 4. "AND" Types ===
+// === "AND" Types ===
 
 type AppleVariety {
   GoldenDelicious
@@ -79,7 +79,7 @@ type FruitSalad {
   )
 };
 
-// === 4. "OR" Types ===
+// === "OR" Types ===
 
 type FruitSnack {
   Apple(AppleVariety)
@@ -87,13 +87,13 @@ type FruitSnack {
   Cherries(CherryVariety)
 };
 
-// === 4. Simple Types ===
+// === Simple Types ===
 
 type ProductCode {
   ProductCode(String)
 };
 
-// === 4. Working with Types ===
+// === Working with Types ===
 
 type Person {
   Person(first: String, last: String)
@@ -136,7 +136,7 @@ pub fn ex_6_test() {
   |> should.equal("2.5 kg")
 }
 
-// === 4. Building a Domain Model by Composing Types ===
+// === Building a Domain Model by Composing Types ===
 
 type CheckNumber {
   CheckNumber(Int)
@@ -190,7 +190,7 @@ type PayInvoice =
 type ConvertPaymentCurrency =
   fn(Payment, Currency) -> Payment;
 
-// === 4. Modeling Optional Values ===
+// === Modeling Optional Values ===
 
 type PersonalName {
   PersonalName(
@@ -200,7 +200,7 @@ type PersonalName {
   )
 };
 
-// === 4. Modeling errors ===
+// === Modeling errors ===
 
 type Result(success, failure) {
   Ok(success)
@@ -216,7 +216,7 @@ type PaymentError {
 type PayInvoice2 =
   fn(UnpaidInvoice, Payment) -> Result(PaidInvoice, PaymentError);
 
-// === 4. Modeling No Value at All ===
+// === Modeling No Value at All ===
 
 // Dummy type
 type Customer =
@@ -228,7 +228,7 @@ type SaveCustomer =
 type NextRandom =
   fn() -> Int;
 
-// === 4. Modeling Lists and Collections ===
+// === Modeling Lists and Collections ===
 
 // Dummy type
 type OrderId =
