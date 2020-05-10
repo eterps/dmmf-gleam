@@ -72,3 +72,45 @@ pub fn ex_2_test() {
 type UnitQuantity3 = Int;
 // No translation for [<Struct>]
 // No translation for UnitQuantities of int[]
+
+// === Modeling Complex Data / Modeling Unknown Types ===
+
+type Undefined = Nil // Gleam has no exn type
+
+type CustomerInfo = Undefined;
+type ShippingAddress = Undefined;
+type BillingAddress = Undefined;
+type OrderLine = Undefined;
+type BillingAmount = Undefined;
+
+type Order {
+  Order(
+    customer_info: CustomerInfo,
+    shipping_address: ShippingAddress,
+    billing_address: BillingAddress,
+    order_lines: List(OrderLine),
+    amount_to_bill: BillingAmount
+  )
+};
+
+// === Modeling with Choice Types ===
+
+// Dummy type
+type GizmoCode = Undefined;
+
+type ProductCode {
+  Widget(WidgetCode)
+  Gizmo(GizmoCode)
+};
+
+type OrderQuantity {
+  Unit(UnitQuantity)
+  Kilogram(KilogramQuantity)
+}
+
+// === Modeling Workflows with Functions ===
+
+type UnvalidatedOrder = Undefined
+type ValidatedOrder = Undefined
+
+type ValidateOrder = fn(UnvalidatedOrder) -> ValidatedOrder
