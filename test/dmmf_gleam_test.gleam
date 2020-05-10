@@ -58,18 +58,18 @@ type AppleVariety {
   GoldenDelicious
   GrannySmith
   Fuji
-}
+};
 
 type BananaVariety {
   Cavendish
   GrosMichel
   Manzano
-}
+};
 
 type CherryVariety {
   Montmorency
   Bing
-}
+};
 
 type FruitSalad {
   FruitSalad(
@@ -77,7 +77,7 @@ type FruitSalad {
     banana: BananaVariety,
     cherries: CherryVariety
   )
-}
+};
 
 // === 4. "OR" Types ===
 
@@ -85,19 +85,19 @@ type FruitSnack {
   Apple(AppleVariety)
   Banana(BananaVariety)
   Cherries(CherryVariety)
-}
+};
 
 // === 4. Simple Types ===
 
 type ProductCode {
   ProductCode(String)
-}
+};
 
 // === 4. Working with Types ===
 
 type Person {
   Person(first: String, last: String)
-}
+};
 
 pub fn ex_5_test() {
   let a_person = Person(first: "Alex", last: "Adams")
@@ -116,7 +116,7 @@ pub fn ex_5_test() {
 type OrderQuantity {
   UnitQuantity(Int)
   KilogramQuantity(Float)
-}
+};
 
 fn get_quantity(an_order_qty) {
   case an_order_qty {
@@ -140,55 +140,55 @@ pub fn ex_6_test() {
 
 type CheckNumber {
   CheckNumber(Int)
-}
+};
 
 type CardNumber {
   CardNumber(String)
-}
+};
 
 type CardType {
   Visa
   Mastercard
-}
+};
 
 type CreditCardInfo {
   CreditCardInfo(card_type: CardType, card_number: CardNumber)
-}
+};
 
 type PaymentMethod {
   Cash
   Check(CheckNumber)
   Card(CreditCardInfo)
-}
+};
 
 type PaymentAmount {
   PaymentAmount(Float)
-}
+};
 
 type Currency {
   EUR
   USD
-}
+};
 
 type Payment {
   Payment(amount: PaymentAmount, currency: Currency, method: PaymentAmount)
-}
+};
 
 // Dummy type
 type UnpaidInvoice {
   UnpaidInvoice
-}
+};
 
 // Dummy type
 type PaidInvoice {
   PaidInvoice
-}
+};
 
 type PayInvoice =
-  fn(UnpaidInvoice, Payment) -> PaidInvoice
+  fn(UnpaidInvoice, Payment) -> PaidInvoice;
 
 type ConvertPaymentCurrency =
-  fn(Payment, Currency) -> Payment
+  fn(Payment, Currency) -> Payment;
 
 // === 4. Modeling Optional Values ===
 
@@ -198,49 +198,49 @@ type PersonalName {
     middle_initial: Option(String),
     last_name: String
   )
-}
+};
 
 // === 4. Modeling errors ===
 
 type Result(success, failure) {
   Ok(success)
   Error(failure)
-}
+};
 
 type PaymentError {
   CardTypeNotRecognized
   PaymentRejected
   PaymentProviderOffline
-}
+};
 
 type PayInvoice2 =
-  fn(UnpaidInvoice, Payment) -> Result(PaidInvoice, PaymentError)
+  fn(UnpaidInvoice, Payment) -> Result(PaidInvoice, PaymentError);
 
 // === 4. Modeling No Value at All ===
 
 // Dummy type
 type Customer =
-  Int
+  Int;
 
 type SaveCustomer =
-  fn(Customer) -> Nil
+  fn(Customer) -> Nil;
 
 type NextRandom =
-  fn() -> Int
+  fn() -> Int;
 
 // === 4. Modeling Lists and Collections ===
 
 // Dummy type
 type OrderId =
-  Int
+  Int;
 
 // Dummy type
 type OrderLine =
-  Nil
+  Nil;
 
 type Order {
   Order(order_id: OrderId, lines: List(OrderLine))
-}
+};
 
 pub fn ex_7_test() {
   let a_list = [1, 2, 3]
